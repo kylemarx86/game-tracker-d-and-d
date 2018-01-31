@@ -8,7 +8,9 @@
     <body>
         Welcome to D and D login page
 
-        <form action='/game.php'>
+        <form>
+        <!-- <form action='/game.php' method='POST'> -->
+        <form action='/login' method="POST">
             <div class='form-field'>
                 <label>User Name</label>
                 <input type='text' name='name' autofocus>
@@ -18,12 +20,12 @@
                 <label>Game Name</label>
                 <input type='text' name='game'>
             </div>
-            
+
             <div class='form-field'>
                 <label for="gameMaster">Game Master</label>
-                <input type="radio" name="userType" id="gameMaster" value="gameMaster" checked='checked'><br>
+                <input type="radio" name="role" id="gameMaster" value="gameMaster" checked='checked'><br>
                 <label for="player">Player</label>
-                <input type="radio" name="userType" id="player" value="player"><br>
+                <input type="radio" name="role" id="player" value="player"><br>
             </div>
 
             <div class='form-field'>
@@ -34,5 +36,6 @@
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src='/socket.io/socket.io.js'></script>
         <script src='/js/index.js'></script>
+        <!-- <script data-main="js/index.js" src="scripts/require.js"></script> -->
     </body>
 </html>
