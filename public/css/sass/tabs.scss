@@ -1,0 +1,95 @@
+/* styling modified obtained from https://codepen.io/everdimension/pen/xZLggo */
+
+
+/*
+    $tab-count : number of tabs that will be in the navigation
+    $active-tab-color : color of the line under the tab and text of the active tab
+    */
+
+    @mixin define-tab-and-slider-widths-and-color($tab-count: 2, $active-tab-color: red) {
+        $tab-width: 100% / $tab-count;
+        &__tab {
+            width: $tab-width;
+            @for $i from 1 through $tab-count {
+                &:nth-child(#{$i}).active~.tabs__slider {
+                    left: calc(#{$tab-width * ($i - 1) + .05 * $tab-width});
+                }
+            }
+            &.active {
+                >a {
+                    color: $active-tab-color;
+                }
+                &:hover {
+                    >a {
+                        color: $active-tab-color;
+                    }
+                }
+            }
+        }
+        &__slider {
+            width: $tab-width * .9;
+            background-color: $active-tab-color;
+        }
+    }
+    
+    .panel {
+        width: 100%;
+        max-width: 600px;
+        margin: 30px auto;
+        background-color: #fff;
+        .tabs {
+            position: relative;
+            background-color: #fff;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: inline-block;
+            @include define-tab-and-slider-widths-and-color(2, #4A66F4);
+            &:after {
+                content: ' ';
+                display: table;
+                clear: both;
+            }
+            &__tab {
+                float: left;
+                text-align: center;
+                font-family: 'Roboto Slab';
+                height: 3.65em;
+                >a {
+                    display: block;
+                    padding: 10px 12px;
+                    text-decoration: none;
+                    color: #666;
+                    transition: color .15s;
+                    cursor: default;
+                }
+                &.active {
+                    >a {
+                        font-weight: bold;
+                    }
+                }
+                &:hover:not(.active):not(.disabled) {
+                    >a {
+                        color: black;
+                        cursor: pointer;
+                    }
+                }
+            }
+            &__slider {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                height: 2px;
+                transition: left .25s;
+            }
+        }
+        &__body {
+            padding: 10px 20px;
+            .content {
+                display: initial;
+                &.hidden {
+                    display: none;
+                }
+            }
+        }
+    }

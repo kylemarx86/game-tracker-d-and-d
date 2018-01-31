@@ -5,6 +5,8 @@ const http = require('http');
 const express = require('express');
 const socketIO = require('socket.io');
 const bodyParser = require('body-parser');
+const hbs = require('hbs');
+// const hbs = require('handlebars');
 // const request = require('request');
 
 const {Users} = require('./utils/users');
@@ -23,16 +25,50 @@ var games = new Games();
 // MIDDLEWARE
 app.use(express.static(publicPath));
 
+// figure out which i actually need
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+})); 
+app.set('view engine', 'hbs');
+
+hbs.registerHelper('screamIt', (text) => {
+    return text.toUpperCase();
+});
 
 io.on('connection', (socket) => {
     console.log('new user connected');
+
+    app.post('/game', (req, res) => {
+        // res.sendFile('./game.php');
+        
+        var name = req.body.name;
+        var game = req.body.game;
+        var role = req.body.role;
+        
+        var data = {name, game, role};
+        // app.set('x-name', name);
+        // app.set('x-game', game);
+        // app.set('x-role', role);
+
+        if(role === 'gameMaster') {
+            // res.render('game_master.hbs', data);
+            res.render('game_master.hbs', {data});
+        } else if(role === 'player') {
+            res.render('game_player.hbs', {data});
+        } else {
+            // bad info, handle somehow
+            // throw an error = role undefined
+            res.send('bad info');
+        }
+    });
 
     socket.on('joinLobby', (callback) => {
         socket.join('lobby');
         socket.game = 'lobby';
         
         // emit rooms to user in lobby
-        socket.emit('updateRoomsList', JSON.stringify(games));
+        socket.emit('updateGamesList', JSON.stringify(games));
         callback();
     });
 
@@ -40,6 +76,7 @@ io.on('connection', (socket) => {
         // add authentication here
         
         // leave previous game sockets (or lobby)
+        // will this still exist????
         if(socket.game){
             socket.leave(socket.game);
             var game = games.removeUserFromGame(socket.game);
@@ -52,9 +89,13 @@ io.on('connection', (socket) => {
         users.addUser(socket.id, params.name, params.game, params.role);
         console.log('user added');
 
-        io.to(params.room).emit('updateUserList', users.getUserList(params.room));
-
+        
         games.addUserToGame(params.game);
+
+        // first thing not used yet
+        io.to(params.game).emit('updateUserList', users.getUserList(params.game));
+        io.to('lobby').emit('updateGamesList', JSON.stringify(games));
+        console.log('rooms/games: ', socket.adapter.rooms);
         
         socket.broadcast.to(params.game).emit('welcome', {name: params.name, role: params.role});
         console.log(`user entered ${params.game}`);
@@ -68,7 +109,7 @@ io.on('connection', (socket) => {
         if(user) {
             var game = games.removeUserFromGame(user.game);
             
-            io.to('lobby').emit('updateRoomsList', JSON.stringify(games));
+            io.to('lobby').emit('updateGamesList', JSON.stringify(games));
 
             io.to(user.game).emit('updateUserList', users.getUserList(user.game));
             // io.to(user.game).emit('newMessage', generateMessage('Admin', `${user.name} has left.`));
