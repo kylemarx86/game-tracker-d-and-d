@@ -29,16 +29,24 @@ io.on('connection', (socket) => {
 
     socket.on('joinLobby', (callback) => {
         socket.join('lobby');
+        socket.game = 'lobby';
         
         // emit rooms to user in lobby
-        socket.emit('updateRoomsList', JSON.stringify(rooms));
+        socket.emit('updateRoomsList', JSON.stringify(games));
         callback();
     });
 
     socket.on('joinGame', (params, callback) => {
         // add authentication here
-
+        
+        // leave previous game sockets (or lobby)
+        if(socket.game){
+            socket.leave(socket.game);
+            var game = games.removeUserFromGame(socket.game);
+        }
+        
         socket.join(params.game);
+        socket.game = params.game;
 
         users.removeUser(socket.id);
         users.addUser(socket.id, params.name, params.game, params.role);
@@ -47,12 +55,9 @@ io.on('connection', (socket) => {
         io.to(params.room).emit('updateUserList', users.getUserList(params.room));
 
         games.addUserToGame(params.game);
-        console.log('games', games.games);
-        console.log('sockets: ', socket.adapter.rooms);
-
         
         socket.broadcast.to(params.game).emit('welcome', {name: params.name, role: params.role});
-
+        console.log(`user entered ${params.game}`);
         callback();
     });
 
@@ -67,10 +72,7 @@ io.on('connection', (socket) => {
 
             io.to(user.game).emit('updateUserList', users.getUserList(user.game));
             // io.to(user.game).emit('newMessage', generateMessage('Admin', `${user.name} has left.`));
-
-            console.log('users', users.users);
-            console.log('games', games.games);
-            console.log('sockets: ', socket.adapter.rooms);
+            console.log(`user left ${user.game}`);
         }
     });
 });

@@ -58,7 +58,7 @@ $('button').click(function() {
         role: $('input[name="role"]:checked').val()
     };
 
-    socket.emit('submitForm', params, function(err){
+    socket.emit('joinGame', params, function(err){
         if(err){
             alert(err);
             window.location.href = '/';
