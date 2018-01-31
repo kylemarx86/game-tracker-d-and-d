@@ -32,10 +32,6 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 })); 
 app.set('view engine', 'hbs');
 
-hbs.registerHelper('screamIt', (text) => {
-    return text.toUpperCase();
-});
-
 io.on('connection', (socket) => {
     console.log('new user connected');
 
@@ -58,7 +54,6 @@ io.on('connection', (socket) => {
             res.render('game_player.hbs', {data});
         } else {
             // bad info, handle somehow
-            // throw an error = role undefined
             res.send('bad info');
         }
     });
