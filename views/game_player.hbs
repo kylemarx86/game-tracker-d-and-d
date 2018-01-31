@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>D and D - Player</title>
+    </head>
+    <body>
+        <p>Welcome to {{data.game}} D and D game.</p>
+        <p>Your name is {{data.name}}</p>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src='/socket.io/socket.io.js'></script>
+        <script>
+            var data = {
+                name: "{{data.name}}",
+                game: "{{data.game}}"
+            }
+        </script>
+        <script src='/js/game_master.js' ></script>
+    </body>
+</html>
