@@ -18,6 +18,7 @@ class Games {
     }
     
     addUserToGame(name) {
+        console.log('name here', name);
         var gameIndex = this.games.findIndex((game) => game.name === name);
 
         // find index returns index of first matching index of matching criteria or -1 if not found

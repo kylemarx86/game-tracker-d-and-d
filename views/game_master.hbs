@@ -1,22 +1,88 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset='utf-8'>
-        <title>D and D - Game Master</title>
-    </head>
-    <body>
-        <p>lorem ipsum here</p>
-        <p>welcome to D and D game</p>
-        <div>You are {{data.name}} and you are running the {{data.game}} game.</div>
 
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <script src='/socket.io/socket.io.js'></script>
-        <script>
-            var data = {
-                name: "{{data.name}}",
-                game: "{{data.game}}"
-            }
-        </script>
-        <script src='/js/game_master.js' ></script>
-    </body>
+<head>
+    <meta charset='utf-8'>
+    <title>D and D - Game Master</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <!-- material icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    {{!-- handlebars --}}
+    <script type="text/javascript" src="/js/libs/handlebars-v4.0.11.js"></script>
+
+    
+</head>
+
+<body>
+    <p>lorem ipsum here</p>
+    <p>welcome to D and D game</p>
+    <div>You are {{data.name}} and you are running the {{data.game}} game.</div>
+    
+    {{!-- area to add items --}}
+    <ul class='main_list collapsible' data-collapsible='accordion'></ul>
+
+    <script id="items-group-template" type="text/x-handlebars-template">
+        <li>
+            <div class="collapsible-header blue darken-3">{{classification}}</div>
+            <div class="collapsible-body">
+                <table class='striped'>
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Value</th>
+                            <th>Weight</th>
+                            <th>Add</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {{!-- individual items added here --}}
+                    </tbody>
+                </table>
+            </div>
+        </li>
+    </script>
+
+    <script id="items-item-template" type="text/x-handlebars-template">
+        <tr>
+            <td>{{item}}</td>
+            <td>{{value}}</td>
+            <td>{{weight}}</td>
+            <td>
+                <span class="list__item chip green">
+                    <i class="material-icons small">add</i>
+                </span>
+            </td>
+        </tr>
+    </script>
+
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    
+    {{!-- socket.io --}}
+    {{!-- <script src='/socket.io/socket.io.js'></script> --}}
+    {{!-- https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js --}}
+    <script data-main="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js" src="http://requirejs.org/docs/release/1.0.8/comments/require.js"></script>
+    {{!-- <script data-main="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.slim.js" src="http://requirejs.org/docs/release/1.0.8/comments/require.js"></script> --}}
+
+    {{!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script> --}}
+    <script>
+
+    </script>
+    <script>
+        var data = {
+            name: "{{data.name}}",
+            game: "{{data.game}}"
+        }
+    </script>
+    <script data-main="/../server/utils/gameItems.js" src="http://requirejs.org/docs/release/1.0.8/comments/require.js"></script>
+    <script src='/js/game_master.js'></script>
+</body>
+
 </html>
