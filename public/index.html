@@ -1,67 +1,67 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Dungeons and Dragons - login</title>
-        <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no'>
-        <link rel='stylesheet' href='/css/style.css'>
-    </head>
-    <body>
-        Welcome to D and D login page
 
-        <form action='/game' method="POST">
-            <div class='form-field'>
-                <label>User Name</label>
-                <input type='text' name='name' autofocus>
-            </div>
+<head>
+    <meta charset="utf-8">
+    <title>Dungeons and Dragons - login</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no'>
+    <link rel='stylesheet' href='/css/style.css'>
+</head>
 
-            <!-- <div class='form-field'>
-                <label>Game Name</label>
-                <input type='text' name='game'>
-            </div> -->
+<body>
+    Welcome to D and D login page
 
-            <!-- <div class='form-field'>
-                <label for="gameMaster">Game Master</label>
-                <input type="radio" name="role" id="gameMaster" value="gameMaster" checked='checked'><br>
-                <label for="player">Player</label>
-                <input type="radio" name="role" id="player" value="player"><br>
-            </div> -->
-            <!-- tabs to control rooms -->
-            <div class='panel'>
-                <nav>
-                    <ul class='tabs double'>
-                        <li class='tabs__tab active'><a href='#'>Enter Existing Game as Player</a></li>
-                        <li class='tabs__tab '><a href='#'>Create Game as Game Master</a></li>
-                        <li class='tabs__slider' role='presentation'></li>
-                    </ul>
-                </nav>
-                <div class='panel__body'>
-                    <div class='content'>
-                        <div class='form-field'>
-                            <label>Available Games</label>
-                            <input class='panel__input' type='hidden' name='role' value='player'>
-                            <select class='panel__input' name="game" disabled>
-                                <option value="" disabled selected>No games available</option>
-                            </select>
-                        </div>
+    <!-- tabs to control rooms -->
+    <div class='panel'>
+        <nav>
+            <ul class='tabs double'>
+                <li class='tabs__tab active'>
+                    <a href='#'>Login</a>
+                </li>
+                <li class='tabs__tab '>
+                    <a href='#'>Sign Up</a>
+                </li>
+                <li class='tabs__slider' role='presentation'></li>
+            </ul>
+        </nav>
+        <div class='panel__body'>
+            <div class='content'>
+                <form action='/game_selection' method="POST">
+                    <div class='form-field'>
+                        <label>User Name</label>
+                        <input type='text' name='name' autofocus>
                     </div>
-                    <div class='content hidden'>
-                        <div class='form-field'>
-                            <input class='panel__input' type='hidden' name='role' value='gameMaster' disabled>
-                            <label>Game Name</label>
-                            <input class='panel__input' type='text' name='game'/>
-                        </div>
+                    <div class='form-field'>
+                        <label>Password</label>
+                        <input type='password' name='password' autofocus>
                     </div>
-                </div>
-            </div>
 
-            <div class='form-field'>
-                <button>Join</button>
+                    <div class='form-field'>
+                        <button>Join</button>
+                    </div>
+                </form>
             </div>
-        </form>
-        
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <script src='/socket.io/socket.io.js'></script>
-        <script src='/js/index.js'></script>
-    </body>
+            <div class='content hidden'>
+                <form action='/sign_up' method="POST">
+                    <div class='form-field'>
+                        <label>User Name</label>
+                        <input type='text' name='name' autofocus>
+                    </div>
+                    <div class='form-field'>
+                        <label>Password</label>
+                        <input type='password' name='password' autofocus>
+                    </div>
+
+                    <div class='form-field'>
+                        <button>Join</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src='/js/index.js'></script>
+</body>
+
 </html>

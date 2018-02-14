@@ -33,8 +33,24 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 hbs.registerPartials(__dirname + './../views/partials');
 app.set('view engine', 'hbs');
 
+
+app.post('/game_selection', (req, res) => {
+    var name = req.body.name;
+    var password = req.body.password;
+
+    console.log('entering game selection')
+    res.render('game_select.hbs');
+});
+
+app.post('/sign_up', (req, res) => {
+    console.log('sign up')
+    res.render('sign_up.hbs');
+});
+
 io.on('connection', (socket) => {
     console.log('new user connected');
+    
+
 
     app.post('/game', (req, res) => {
         // res.sendFile('./game.php');
