@@ -1,0 +1,544 @@
+{
+    "data": [
+        {
+            "group": "Light Armor",
+            "items": [
+                {
+                    "name": "leather",
+                    "cost": "10 gp",
+                    "weight": 10
+                },
+                {
+                    "name": "studded leather",
+                    "cost": "45 gp",
+                    "weight": 13
+                }
+            ]
+        },
+        {
+            "group": "Medium Armor",
+            "items": [
+                {
+                    "name": "hide",
+                    "cost": "10 gp",
+                    "weight": 12
+                },
+                {
+                    "name": "chain shirt",
+                    "cost": "50 gp",
+                    "weight": 20
+                },
+                {
+                    "name": "scale mail",
+                    "cost": "50 gp",
+                    "weight": 45
+                },
+                {
+                    "name": "breastplate",
+                    "cost": "400 gp",
+                    "weight": 20
+                }
+            ]
+        },
+        {
+            "group": "Heavy Armor",
+            "items": [
+                {
+                    "name": "ring mail",
+                    "cost": "30 gp",
+                    "weight": 40
+                },
+                {
+                    "name": "chain mail",
+                    "cost": "75 gp",
+                    "weight": 55
+                },
+                {
+                    "name": "splint",
+                    "cost": "200 gp",
+                    "weight": 60
+                }
+            ]
+        },
+        {
+            "group": "Shield",
+            "items": [
+                {
+                    "name": "shield",
+                    "cost": "10 gp",
+                    "weight": 6
+                }
+            ]
+        },
+        {
+            "group": "Simple Melee Weapons",
+            "items": [
+                {
+                    "name": "club",
+                    "cost": "1 sp",
+                    "weight": 2
+                },
+                {
+                    "name": "dagger",
+                    "cost": "2 gp",
+                    "weight": 1
+                },
+                {
+                    "name": "greatclub",
+                    "cost": "2 sp",
+                    "weight": 10
+                },
+                {
+                    "name": "handaxe",
+                    "cost": "5 gp",
+                    "weight": 2
+                },
+                {
+                    "name": "javelin",
+                    "cost": "5 sp",
+                    "weight": 2
+                },
+                {
+                    "name": "light hammer",
+                    "cost": "2 gp",
+                    "weight": 2
+                },
+                {
+                    "name": "mace",
+                    "cost": "5 gp",
+                    "weight": 4
+                },
+                {
+                    "name": "quarterstaff",
+                    "cost": "2 sp",
+                    "weight": 4
+                },
+                {
+                    "name": "spear",
+                    "cost": "1 gp",
+                    "weight": 3
+                }
+            ]
+        },
+        {
+            "group": "Simple Ranged Weapons",
+            "items": [
+                {
+                    "name": "crossbow, light",
+                    "cost": "25 gp",
+                    "weight": 5
+                },
+                {
+                    "name": "shortbow",
+                    "cost": "25 gp",
+                    "weight": 2
+                }
+            ]
+        },
+        {
+            "group": "Martial Melee Weapons",
+            "items": [
+                {
+                    "name": "battleaxe",
+                    "cost": "10 gp",
+                    "weight": 4
+                },
+                {
+                    "name": "greataxe",
+                    "cost": "30 gp",
+                    "weight": 7
+                },
+                {
+                    "name": "greatsword",
+                    "cost": "50 gp",
+                    "weight": 6
+                },
+                {
+                    "name": "longsword",
+                    "cost": "15 gp",
+                    "weight": 3
+                },
+                {
+                    "name": "maul",
+                    "cost": "10 gp",
+                    "weight": 10
+                },
+                {
+                    "name": "morningstar",
+                    "cost": "15 gp",
+                    "weight": 4
+                },
+                {
+                    "name": "rapier",
+                    "cost": "25 gp",
+                    "weight": 2
+                },
+                {
+                    "name": "scimitar",
+                    "cost": "25 gp",
+                    "weight": 3
+                },
+                {
+                    "name": "shortsword",
+                    "cost": "10 gp",
+                    "weight": 2
+                },
+                {
+                    "name": "trident",
+                    "cost": "5 gp",
+                    "weight": 4
+                },
+                {
+                    "name": "warhammer",
+                    "cost": "15 gp",
+                    "weight": 2
+                }
+            ]
+        },
+        {
+            "group": "Martial Ranged Weapons",
+            "items": [
+                {
+                    "name": "crossbow, hand",
+                    "cost": "75 gp",
+                    "weight": 3
+                },
+                {
+                    "name": "crossbow, heavy",
+                    "cost": "50 gp",
+                    "weight": 18
+                },
+                {
+                    "name": "longbow",
+                    "cost": "50 gp",
+                    "weight": 2
+                }
+            ]
+        },
+        {
+            "group": "Adventuring Gear",
+            "items": [
+                {
+                    "name": "arrows (20)",
+                    "cost": "1 gp",
+                    "weight": 1
+                },
+                {
+                    "name": "crossbow bolts (20)",
+                    "cost": "1 gp",
+                    "weight": 1.5
+                },
+                {
+                    "name": "backpack",
+                    "cost": "2 gp",
+                    "weight": 5
+                },
+                {
+                    "name": "bedroll",
+                    "cost": "1 gp",
+                    "weight": 7
+                },
+                {
+                    "name": "bell",
+                    "cost": "1 gp",
+                    "weight": 0
+                },
+                {
+                    "name": "blanket",
+                    "cost": "5 sp",
+                    "weight": 3
+                },
+                {
+                    "name": "book",
+                    "cost": "25 gp",
+                    "weight": 5
+                },
+                {
+                    "name": "candle",
+                    "cost": "1 cp",
+                    "weight": 0
+                },
+                {
+                    "name": "carpenter's tools",
+                    "cost": "8 gp",
+                    "weight": 6
+                },
+                {
+                    "name": "case (for map or scroll)",
+                    "cost": "1 gp",
+                    "weight": 1
+                },
+                {
+                    "name": "chalk (1 piece)",
+                    "cost": "1 cp",
+                    "weight": 0
+                },
+                {
+                    "name": "chest",
+                    "cost": "5 gp",
+                    "weight": 25
+                },
+                {
+                    "name": "clothes, common",
+                    "cost": "5 sp",
+                    "weight": 3
+                },
+                {
+                    "name": "clothes, fine",
+                    "cost": "15 gp",
+                    "weight": 6
+                },
+                {
+                    "name": "component pouch",
+                    "cost": "25 gp",
+                    "weight": 2
+                },
+                {
+                    "name": "crowbar",
+                    "cost": "2 gp",
+                    "weight": 5
+                },
+                {
+                    "name": "grappling hook",
+                    "cost": "2 gp",
+                    "weight": 4
+                },
+                {
+                    "name": "hammer",
+                    "cost": "1 gp",
+                    "weight": 3
+                },
+                {
+                    "name": "hammer, sledge",
+                    "cost": "2 gp",
+                    "weight": 10
+                },
+                {
+                    "name": "healer's kit",
+                    "cost": "5 gp",
+                    "weight": 3
+                },
+                {
+                    "name": "holy symbol",
+                    "cost": "5 gp",
+                    "weight": 1
+                },
+                {
+                    "name": "hourglass",
+                    "cost": "25 gp",
+                    "weight": 1
+                },
+                {
+                    "name": "ink (1 ounce bottle)",
+                    "cost": "10 gp",
+                    "weight": 0
+                },
+                {
+                    "name": "ink pen",
+                    "cost": "2 cp",
+                    "weight": 0
+                },
+                {
+                    "name": "lantern, bullseye",
+                    "cost": "10 gp",
+                    "weight": 2
+                },
+                {
+                    "name": "lantern, hooded",
+                    "cost": "5 gp",
+                    "weight": 2
+                },
+                {
+                    "name": "lock",
+                    "cost": "10 gp",
+                    "weight": 1
+                },
+                {
+                    "name": "mason's tools",
+                    "cost": "10 gp",
+                    "weight": 8
+                },
+                {
+                    "name": "mess kit",
+                    "cost": "2 sp",
+                    "weight": 1
+                },
+                {
+                    "name": "mirror, steel",
+                    "cost": "5 gp",
+                    "weight": 0.5
+                },
+                {
+                    "name": "oil (flask)",
+                    "cost": "1 sp",
+                    "weight": 1
+                },
+                {
+                    "name": "paper (one sheet)",
+                    "cost": "2 sp",
+                    "weight": 0
+                },
+                {
+                    "name": "parchment (one sheet)",
+                    "cost": "1 sp",
+                    "weight": 0
+                },
+                {
+                    "name": "perfume (vial)",
+                    "cost": "5 gp",
+                    "weight": 0
+                },
+                {
+                    "name": "pick, miner's",
+                    "cost": "2 gp",
+                    "weight": 10
+                },
+                {
+                    "name": "piton",
+                    "cost": "5 cp",
+                    "weight": 0.25
+                },
+                {
+                    "name": "pot, iron",
+                    "cost": "2 gp",
+                    "weight": 10
+                },
+                {
+                    "name": "potion of healing",
+                    "cost": "50 gp",
+                    "weight": 0.5
+                },
+                {
+                    "name": "playing cards",
+                    "cost": "5 sp",
+                    "weight": 0
+                },
+                {
+                    "name": "pouch",
+                    "cost": "5 sp",
+                    "weight": 1
+                },
+                {
+                    "name": "rations (1 day)",
+                    "cost": "5 sp",
+                    "weight": 2
+                },
+                {
+                    "name": "robes",
+                    "cost": "1 gp",
+                    "weight": 4
+                },
+                {
+                    "name": "rope, hempen (50 feet)",
+                    "cost": "1 gp",
+                    "weight": 10
+                },
+                {
+                    "name": "rope, silk (50 feet)",
+                    "cost": "10 gp",
+                    "weight": 5
+                },
+                {
+                    "name": "sack",
+                    "cost": "1 cp",
+                    "weight": 0.5
+                },
+                {
+                    "name": "sealing wax",
+                    "cost": "5 sp",
+                    "weight": 0
+                },
+                {
+                    "name": "shovel",
+                    "cost": "2 gp",
+                    "weight": 5
+                },
+                {
+                    "name": "signal whistle",
+                    "cost": "5 cp",
+                    "weight": 0
+                },
+                {
+                    "name": "signet ring",
+                    "cost": "5 gp",
+                    "weight": 0
+                },
+                {
+                    "name": "spellbook",
+                    "cost": "50 gp",
+                    "weight": 3
+                },
+                {
+                    "name": "spike, iron (10)",
+                    "cost": "1 gp",
+                    "weight": 5
+                },
+                {
+                    "name": "tent, two-person",
+                    "cost": "2 gp",
+                    "weight": 20
+                },
+                {
+                    "name": "thieves' tools",
+                    "cost": "25 gp",
+                    "weight": 1
+                },
+                {
+                    "name": "tinderbox",
+                    "cost": "5 sp",
+                    "weight": 1
+                },
+                {
+                    "name": "torch",
+                    "cost": "1 cp",
+                    "weight": 1
+                },
+                {
+                    "name": "waterskin",
+                    "cost": "2 sp",
+                    "weight": 5
+                },
+                {
+                    "name": "whetstone",
+                    "cost": "1 cp",
+                    "weight": 1
+                }
+            ]
+        },
+        {
+            "group": "Tack and Harness",
+            "items": [
+                {
+                    "name": "bit and bridle",
+                    "cost": "2 gp",
+                    "weight": 1
+                },
+                {
+                    "name": "feed (per day)",
+                    "cost": "5 cp",
+                    "weight": 10
+                },
+                {
+                    "name": "pack",
+                    "cost": "5 gp",
+                    "weight": 15
+                },
+                {
+                    "name": "riding",
+                    "cost": "10 gp",
+                    "weight": 25
+                },
+                {
+                    "name": "saddlebags",
+                    "cost": "4 gp",
+                    "weight": 8
+                },
+                {
+                    "name": "stabling (per day)",
+                    "cost": "5 sp",
+                    "weight": 0
+                }
+            ]
+        }
+    ]
+}
