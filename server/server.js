@@ -2,12 +2,12 @@
 
 const path = require('path');
 const http = require('http');
+const fs = require('fs');
+
 const express = require('express');
 const socketIO = require('socket.io');
 const bodyParser = require('body-parser');
 const hbs = require('hbs');
-// const hbs = require('handlebars');
-// const request = require('request');
 
 const {Users} = require('./utils/users');
 const {Games} = require('./utils/games');
@@ -29,7 +29,8 @@ app.use(express.static(publicPath));
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
-})); 
+}));
+hbs.registerPartials(__dirname + './../views/partials');
 app.set('view engine', 'hbs');
 
 io.on('connection', (socket) => {
@@ -42,20 +43,24 @@ io.on('connection', (socket) => {
         var game = req.body.game;
         var role = req.body.role;
         
-        var data = {name, game, role};
+        // make request to items.json
+        fs.readFile(__dirname + './../public/data/items-base.json','utf8', (err, items) => {
+            if(err) throw err;
+            
+            var items = JSON.parse(items).data;
+            var data = {name, game, role, items};
+            if(role === 'gameMaster') {
+                res.render('game_master.hbs', {data});
+            } else if(role === 'player') {
+                res.render('game_player.hbs', {data});
+            } else {
+                // bad info, handle somehow
+                res.send('bad info');
+            }
+        });
         // app.set('x-name', name);
         // app.set('x-game', game);
         // app.set('x-role', role);
-
-        if(role === 'gameMaster') {
-            // res.render('game_master.hbs', data);
-            res.render('game_master.hbs', {data});
-        } else if(role === 'player') {
-            res.render('game_player.hbs', {data});
-        } else {
-            // bad info, handle somehow
-            res.send('bad info');
-        }
     });
 
     socket.on('joinLobby', (callback) => {

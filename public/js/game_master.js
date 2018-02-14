@@ -2,7 +2,7 @@ var socket = io();
 
 socket.on('connect', function() {
     console.log('Connected to server');
-    console.log('data', data);
+    // console.log('data', data);
 
     socket.emit('joinGame', data, function(err) {
         if(err){
@@ -37,3 +37,7 @@ socket.on('welcome', function(info) {
 //     // });
 //     // $('#users').html($ol);      // updates / wipes and adds to prevent duplicates
 // });
+
+$(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
