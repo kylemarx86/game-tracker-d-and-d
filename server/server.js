@@ -50,7 +50,6 @@ io.on('connection', (socket) => {
     console.log('new user connected');
 
     app.post('/game', (req, res) => {
-        var name = req.body.name;
         var game = req.body.game;
         var role = req.body.role;
         
@@ -59,7 +58,7 @@ io.on('connection', (socket) => {
             if(err) throw err;
             
             var items = JSON.parse(items).data;
-            var data = {name, game, role, items};
+            var data = {game, role, items};
             if(role === 'gameMaster') {
                 res.render('game_master.hbs', {data});
             } else if(role === 'player') {

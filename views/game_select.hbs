@@ -43,9 +43,9 @@
 
         <div id="existing-game" class="row">
             <form class='col s12' action='/game' method="POST">
+                <input class='panel__input' type='hidden' name='role' value='player'>
                 <div class='row'>
                     <div class='form-field input-field col s12 m4'>
-                        <input class='panel__input' type='hidden' name='role' value='player'>
                         <select class='panel__input' name="game" disabled>
                             <option value="" disabled selected>No games available</option>
                         </select>
@@ -61,33 +61,32 @@
         </div>
         <div id="create-game" class="row">
             <form class='col s12' action='/game' method="POST">
+                <input class='' type='hidden' name='role' value='gameMaster'>
                 <div class='row'>
-                    <div class='form-field input-field col s12 m4'>
-                        <input class='panel__input' type='hidden' name='role' value='gameMaster' disabled>
+                    <div class=' input-field col s12 m4'>
                         <label>Game Name</label>
-                        <input class='panel__input' type='text' name='game' />
+                        <input class='' type='text' name='game' />
                     </div>
                 </div>
                 <div class='row'>
-                    <div class='form-field input-field col s12 m4'>
+                    <div class=' input-field col s12 m4'>
                         <button class='btn'>Create</button>
                     </div>
                 </div>
             </form>
         </div>
-    </main>
-    
-    <footer id='logout' class='row'>
-        <form class='col s12' action='/'>
-            <div class='row center'>
-                <div class='form-field input-field col s12 m4'>
-                    <button class='btn'>Logout</button>
-                </div>
-            </div>
-        </form>
-    </footer>
 
-    {{!--
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script> --}} {{!--
-    <script src='/js/game_select.js'></script> --}}
+        <div id='logout' class='row'>
+            <form class='col s12' action='/'>
+                <div class='row center'>
+                    <div class='form-field input-field col s12 m4'>
+                        <button class='btn'>Logout</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer></footer>
+
 </body>
