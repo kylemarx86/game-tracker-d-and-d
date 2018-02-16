@@ -5,51 +5,89 @@
     <meta charset="utf-8">
     <title>Dungeons and Dragons - login</title>
     <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no'>
+
+    <!-- stylesheet -->
     <link rel='stylesheet' href='/css/style.css'>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <!-- socket.io -->
+    <script src='/socket.io/socket.io.js'></script>
+    <!-- script -->
+    <script src='/js/game_select.js'></script>
 </head>
 
 <body>
     Welcome to D and D login page
-    <form action='/game' method='POST'>
-        <!-- tabs to control rooms -->
-        <div class='panel'>
-            <nav>
-                <ul class='tabs double'>
-                    <li class='tabs__tab active'>
-                        <a href='#'>Enter Existing Game as Player</a>
+    <header></header>
+
+    <main>
+        <nav class="nav-tabs nav-extended red darken-4">
+            <div class="nav-wrapper">
+                <div class="center">Dungeons and Dragons</div>
+            </div>
+            <div class="nav-content">
+                <ul class="tabs tabs-transparent">
+                    <li class="tab">
+                        <a class="active" href="#existing-game">Enter Existing Game</a>
                     </li>
-                    <li class='tabs__tab '>
-                        <a href='#'>Create Game as Game Master</a>
+                    <li class="tab">
+                        <a class="disabled" href="#create-game">Create Game</a>
                     </li>
-                    <li class='tabs__slider' role='presentation'></li>
                 </ul>
-            </nav>
-            <div class='panel__body'>
-                <div class='content'>
-                    <div class='form-field'>
-                        <label>Available Games</label>
+            </div>
+        </nav>
+
+        <div id="existing-game" class="row">
+            <form class='col s12' action='/game' method="POST">
+                <div class='row'>
+                    <div class='form-field input-field col s12 m4'>
                         <input class='panel__input' type='hidden' name='role' value='player'>
                         <select class='panel__input' name="game" disabled>
                             <option value="" disabled selected>No games available</option>
                         </select>
+                        <label>Available games</label>
                     </div>
                 </div>
-                <div class='content hidden'>
-                    <div class='form-field'>
+                <div class='row'>
+                    <div class='form-field input-field col s12 m4'>
+                        <button class='btn'>Enter</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div id="create-game" class="row">
+            <form class='col s12' action='/game' method="POST">
+                <div class='row'>
+                    <div class='form-field input-field col s12 m4'>
                         <input class='panel__input' type='hidden' name='role' value='gameMaster' disabled>
                         <label>Game Name</label>
                         <input class='panel__input' type='text' name='game' />
                     </div>
                 </div>
+                <div class='row'>
+                    <div class='form-field input-field col s12 m4'>
+                        <button class='btn'>Create</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+    
+    <footer id='logout' class='row'>
+        <form class='col s12' action='/'>
+            <div class='row center'>
+                <div class='form-field input-field col s12 m4'>
+                    <button class='btn'>Logout</button>
+                </div>
             </div>
-        </div>
+        </form>
+    </footer>
 
-        <div class='form-field'>
-            <button>Join</button>
-        </div>
-
-    </form>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src='/socket.io/socket.io.js'></script>
-    <script src='/js/game_select.js'></script>
+    {{!--
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script> --}} {{!--
+    <script src='/js/game_select.js'></script> --}}
 </body>

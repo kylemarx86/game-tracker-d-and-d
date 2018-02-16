@@ -5,63 +5,83 @@
     <meta charset="utf-8">
     <title>Dungeons and Dragons - login</title>
     <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no'>
+
+    <!-- stylesheet -->
     <link rel='stylesheet' href='/css/style.css'>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- Compiled and minified CSS -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"> -->
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 </head>
 
 <body>
     Welcome to D and D login page
 
-    <!-- tabs to control rooms -->
-    <div class='panel'>
-        <nav>
-            <ul class='tabs double'>
-                <li class='tabs__tab active'>
-                    <a href='#'>Login</a>
-                </li>
-                <li class='tabs__tab '>
-                    <a href='#'>Sign Up</a>
-                </li>
-                <li class='tabs__slider' role='presentation'></li>
-            </ul>
-        </nav>
-        <div class='panel__body'>
-            <div class='content'>
-                <form action='/game_selection' method="POST">
-                    <div class='form-field'>
-                        <label>User Name</label>
-                        <input type='text' name='name' autofocus>
-                    </div>
-                    <div class='form-field'>
-                        <label>Password</label>
-                        <input type='password' name='password' autofocus>
-                    </div>
 
-                    <div class='form-field'>
-                        <button>Join</button>
-                    </div>
-                </form>
-            </div>
-            <div class='content hidden'>
-                <form action='/sign_up' method="POST">
-                    <div class='form-field'>
-                        <label>User Name</label>
-                        <input type='text' name='name' autofocus>
-                    </div>
-                    <div class='form-field'>
-                        <label>Password</label>
-                        <input type='password' name='password' autofocus>
-                    </div>
-
-                    <div class='form-field'>
-                        <button>Join</button>
-                    </div>
-                </form>
-            </div>
+    <nav class="nav-tabs nav-extended red darken-4">
+        <div class="nav-wrapper">
+            <div class="center">Dungeons and Dragons Game Tracker</div>
         </div>
+        <div class="nav-content">
+            <ul class="tabs tabs-transparent">
+                <li class="tab">
+                    <a class="active" href="#login">Login</a>
+                </li>
+                <li class="tab">
+                    <a href="#sign-up">Sign up</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="login" class="row">
+        <form class="col s12" action='/game_selection' method="POST">
+            <div class='row'>
+                <div class='form-field input-field col s12 m4'>
+                    <label>User Name</label>
+                    <input type='text' name='name' autofocus>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='form-field input-field col s12 m4'>
+                    <label>Password</label>
+                    <input type='password' name='password' autofocus>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='form-field input-field col s12 m4'>
+                    <button class='btn'>Sign up</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div id="sign-up" class="row">
+        <form class="col s12" action='/sign_up' method="POST">
+            <div class='row'>
+                <div class='form-field input-field col s12 m4'>
+                    <label>User Name</label>
+                    <input type='text' name='name' autofocus>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='form-field input-field col s12 m4'>
+                    <label>Password</label>
+                    <input type='password' name='password' autofocus>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='form-field input-field col s12 m4'>
+                    <button class='btn'>Sign up</button>
+                </div>
+            </div>
+        </form>
     </div>
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src='/js/index.js'></script>
 </body>
 
 </html>
