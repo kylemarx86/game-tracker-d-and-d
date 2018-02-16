@@ -1,16 +1,22 @@
-<table class='striped centered'>
-    <thead>
-        <th>name</th>
-        <th>weight</th>
-        <th>cost</th>
-    </thead>
-    <tbody>
-        {{#each items}}
-        <tr>
-            <td>{{name}}</td>
-            <td>{{weight}}</td>
-            <td>{{cost}}</td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
+<div class='row'>
+    <table class='col s12 striped'>
+        <thead>
+            <th>name</th>
+            <th class=''>weight</th>
+            <th class=''>cost</th>
+            <th class=''>add</th>
+        </thead>
+        <tbody>
+            {{#each items}}
+            <tr>
+                <td class=''>{{name}}</td>
+                <td class=''>{{weight}}</td>
+                <td class=''>{{cost}}</td>
+                <td class=''>
+                    <button class='btn add-to-cart'>+</button>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
