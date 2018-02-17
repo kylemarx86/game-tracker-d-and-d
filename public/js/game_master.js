@@ -1,53 +1,66 @@
-var socket = io();
-
-socket.on('connect', function () {
-    console.log('Connected to server');
-    // console.log('data', data);
-
-    // socket.emit('joinGame', data, function(err) {
-    //     if(err){
-    //         alert(err);
-    //         window.location.href = '/';
-    //     } else{
-    //         console.log('no error');
-    //     }
-    // });
-
-    // socket.on('playerConnecting', function() {
-    //     console.log('player trying to connect to game. Allow? Y/N');
-    // });
+requirejs.config({
+    baseUrl: 'js/app',
 });
 
-socket.on('disconnect', function () {
-    console.log('disconnected from server');
-});
+requirejs(['items'],
+    function (item) {
 
-socket.on('welcome', function (info) {
-    var $p = $('<p>').text(`welcome ${info.name} to the game.`);
-    $('body').append($p);
-});
+        var socket = io();
+        var itemsInCart;
+        var items = new item.Items();
 
-// socket.on('updateUserList', function(users) {
-//     console.log('users list', users);
-//     // var $ol = $('<ol>');
+        socket.on('connect', function () {
+            console.log('Connected to server');
+            // console.log('data', data);
 
-//     // users.forEach(function(user) {
-//     //     var $li = $('<li>').text(user);
-//     //     $ol.append($li);
-//     // });
-//     // $('#users').html($ol);      // updates / wipes and adds to prevent duplicates
-// });
+            // socket.emit('joinGame', data, function(err) {
+            //     if(err){
+            //         alert(err);
+            //         window.location.href = '/';
+            //     } else{
+            //         console.log('no error');
+            //     }
+            // });
 
-$(document).ready(function () {
-    $('.collapsible').collapsible();
-    $('.add-to-cart').click(function () {
-        addToCart(this);
-        // console.log('click')
+            // socket.on('playerConnecting', function() {
+            //     console.log('player trying to connect to game. Allow? Y/N');
+            // });
+        });
+
+        socket.on('disconnect', function () {
+            console.log('disconnected from server');
+        });
+
+        socket.on('welcome', function (info) {
+            var $p = $('<p>').text(`welcome ${info.name} to the game.`);
+            $('body').append($p);
+        });
+
+        // socket.on('updateUserList', function(users) {
+        //     console.log('users list', users);
+        //     // var $ol = $('<ol>');
+
+        //     // users.forEach(function(user) {
+        //     //     var $li = $('<li>').text(user);
+        //     //     $ol.append($li);
+        //     // });
+        //     // $('#users').html($ol);      // updates / wipes and adds to prevent duplicates
+        // });
+
+        $(document).ready(function () {
+            items = new item.Items();
+
+            $('.collapsible').collapsible();
+            $('.add-to-cart').click(function () {
+                addToCart(this);
+            });
+        });
+
+        function addToCart($item) {
+            console.log('added to cart')
+            var name = $($item).closest('tr').find('td:nth-of-type(1)').text();
+            console.log(name);
+            items.addToItemCount(name);
+            console.log('cart', items.items)
+        }
     });
-});
-
-function addToCart($item) {
-    console.log('added to cart')
-    var $name = $($item).closest('tr').find('td:nth-of-type(1)').text();
-    console.log($name)
-}
