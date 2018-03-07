@@ -31,8 +31,73 @@ app.use( bodyParser.json() );                               // to support JSON-e
 app.use(bodyParser.urlencoded( {extended: true} ));         // to support URL-encoded bodies
 // hbs.registerPartials(__dirname + './../views/partials');
 hbs.registerPartials(path.join(__dirname, './../views/partials'));
-
 app.set('view engine', 'hbs');
+
+
+// POST
+// app.post('/game_selection', (req, res) => {
+//     var name = req.body.name;
+//     var password = req.body.password;
+
+//     res.render('game_select.hbs');
+// });
+
+// app.post('/sign_up', (req, res) => {
+//     res.render('sign_up.hbs');
+// });
+
+// SOCKETS
+// io.on('connection', (socket) => {
+//     console.log('new user connected');
+
+//     app.post('/game', (req, res) => {
+//         var game = req.body.game;
+//         var role = req.body.role;
+        
+//         // make request to items.json
+//         fs.readFile(__dirname + './../public/data/items-base.json','utf8', (err, items) => {
+//             if(err) throw err;
+            
+//             var items = JSON.parse(items).data;
+//             var data = {game, role, items};
+//             if(role === 'gameMaster') {
+//                 res.render('game_master.hbs', {data});
+//             } else if(role === 'player') {
+//                 res.render('game_player.hbs', {data});
+//             } else {
+//                 // bad info, handle somehow
+//                 res.send('bad info');
+//             }
+//         });
+//         // app.set('x-name', name);
+//         // app.set('x-game', game);
+//         // app.set('x-role', role);
+//     });
+
+//     socket.on('joinLobby', (callback) => {
+//         socket.join('lobby');
+//         socket.game = 'lobby';
+        
+//         // emit rooms to user in lobby
+//         socket.emit('updateGamesList', JSON.stringify(games));
+//         callback();
+//     });
+
+//     socket.on('joinGame', (params, callback) => {
+//         // add authentication here
+        
+//         // leave previous game sockets (or lobby)
+//         // will this still exist????
+//         if(socket.game){
+//             socket.leave(socket.game);
+//             var game = games.removeUserFromGame(socket.game);
+//         }
+        
+//         socket.join(params.game);
+//         socket.game = params.game;
+//     });
+// });
+
 
 /// SESSION STUFFS
 

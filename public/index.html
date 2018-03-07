@@ -1,67 +1,87 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Dungeons and Dragons - login</title>
-        <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no'>
-        <link rel='stylesheet' href='/css/style.css'>
-    </head>
-    <body>
-        Welcome to D and D login page
 
-        <form action='/game' method="POST">
-            <div class='form-field'>
-                <label>User Name</label>
-                <input type='text' name='name' autofocus>
-            </div>
+<head>
+    <meta charset="utf-8">
+    <title>Dungeons and Dragons - login</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no'>
 
-            <!-- <div class='form-field'>
-                <label>Game Name</label>
-                <input type='text' name='game'>
-            </div> -->
+    <!-- stylesheet -->
+    <link rel='stylesheet' href='/css/style.css'>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- Compiled and minified CSS -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"> -->
 
-            <!-- <div class='form-field'>
-                <label for="gameMaster">Game Master</label>
-                <input type="radio" name="role" id="gameMaster" value="gameMaster" checked='checked'><br>
-                <label for="player">Player</label>
-                <input type="radio" name="role" id="player" value="player"><br>
-            </div> -->
-            <!-- tabs to control rooms -->
-            <div class='panel'>
-                <nav>
-                    <ul class='tabs double'>
-                        <li class='tabs__tab active'><a href='#'>Enter Existing Game as Player</a></li>
-                        <li class='tabs__tab '><a href='#'>Create Game as Game Master</a></li>
-                        <li class='tabs__slider' role='presentation'></li>
-                    </ul>
-                </nav>
-                <div class='panel__body'>
-                    <div class='content'>
-                        <div class='form-field'>
-                            <label>Available Games</label>
-                            <input class='panel__input' type='hidden' name='role' value='player'>
-                            <select class='panel__input' name="game" disabled>
-                                <option value="" disabled selected>No games available</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class='content hidden'>
-                        <div class='form-field'>
-                            <input class='panel__input' type='hidden' name='role' value='gameMaster' disabled>
-                            <label>Game Name</label>
-                            <input class='panel__input' type='text' name='game'/>
-                        </div>
-                    </div>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+</head>
+
+<body>
+    Welcome to D and D login page
+
+
+    <nav class="nav-tabs nav-extended red darken-4">
+        <div class="nav-wrapper">
+            <div class="center">Dungeons and Dragons Game Tracker</div>
+        </div>
+        <div class="nav-content">
+            <ul class="tabs tabs-transparent">
+                <li class="tab">
+                    <a class="active" href="#login">Login</a>
+                </li>
+                <li class="tab">
+                    <a href="#sign-up">Sign up</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="login" class="row">
+        <form class="col s12" action='/game_selection' method="POST">
+            <div class='row'>
+                <div class='form-field input-field col s12 m4'>
+                    <label>User Name</label>
+                    <input type='text' name='name' autofocus>
                 </div>
             </div>
-
-            <div class='form-field'>
-                <button>Join</button>
+            <div class='row'>
+                <div class='form-field input-field col s12 m4'>
+                    <label>Password</label>
+                    <input type='password' name='password' autofocus>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='form-field input-field col s12 m4'>
+                    <button class='btn'>Sign up</button>
+                </div>
             </div>
         </form>
-        
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-        <script src='/socket.io/socket.io.js'></script>
-        <script src='/js/index.js'></script>
-    </body>
+    </div>
+    <div id="sign-up" class="row">
+        <form class="col s12" action='/sign_up' method="POST">
+            <div class='row'>
+                <div class='form-field input-field col s12 m4'>
+                    <label>User Name</label>
+                    <input type='text' name='name' autofocus>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='form-field input-field col s12 m4'>
+                    <label>Password</label>
+                    <input type='password' name='password' autofocus>
+                </div>
+            </div>
+            <div class='row'>
+                <div class='form-field input-field col s12 m4'>
+                    <button class='btn'>Sign up</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+
 </html>

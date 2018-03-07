@@ -65,15 +65,13 @@ describe('Games', () => {
         // gamesRes should just be name
         expect(gamesRes).toEqual(gameName);
     });
-    it('should should remove game that has no long has users', () => {
+    it('should remove game that has no long has users', () => {
         var gameName = games.games[1].name;
         var gamesRes = games.removeUserFromGame(gameName);
 
         expect(gamesRes.name).toBe(gameName);
         expect(gamesRes.userCount).toBe(0);
-        // expect(games.games).toNotContain(gamesRes);
         expect(games.games).not.toContain(gamesRes);
-        // expect(games.games).not.toContain({name: gameName});
     });
 
     it('should sort the games by userCount', () => {

@@ -21,6 +21,7 @@
     "nodemon": "^1.14.11"
   },
   "scripts": {
+    
     "test": "mocha server/**/*.test.js",
     "test-watch": "nodemon --exec \"npm test\""
   },

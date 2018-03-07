@@ -4,58 +4,63 @@
 <head>
     <meta charset='utf-8'>
     <title>D and D - Game Master</title>
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- stylesheet -->
+    <link rel='stylesheet' href='/css/style.css'>
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="js/libs/jquery.js"></script>
+    
     <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/libs/materialize-css/bin/materialize.js"></script>
+    
+    <!-- socket.io -->
     <script src='/socket.io/socket.io.js'></script>
-    <script src='/js/game_master.js'></script>
+ 
+    <!-- script -->
+    <script data-main="/js/game_master.js" src="js/require.js"></script>
 </head>
 
 <body>
-    <p>lorem ipsum here</p>
-    <p>welcome to D and D game</p>
-    <div>You are {{data.name}} and you are running the {{data.game}} game.</div>
-
-    <ul>
-        {{#each data.items}}
-        <li>
-            <ul class='collapsible' data-collapsible='expandable'>
-                <li>
-                    <div class='collapsible-header'>{{group}}</div>
-                    <div class='collapsible-body'>
-                        {{> items_table}}
-                    </div>
-                </li>
-            </ul>
-        </li>
-        {{/each}}
-    </ul>
-
-    {{!--
-    <ul class='collapsible' data-collapsible='accordion'>
-        {{#each data.items}}
-        <li>
-            <div class='collapsible-header'>{{group}}</div>
-            <div class='collapsible-body'>
-                {{> items_table}}
+    <header></header>
+    <main class='flow-text'>
+        <div class='row'>
+            <div class='col s12'>
+                <p>welcome to D and D game</p>
+                <div>You are {{data.name}} and you are running the {{data.game}} game.</div>
             </div>
-        </li>
-        {{/each}}
-    </ul> --}}
-
-    {{!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script> --}}
-    {{!-- <script src='/socket.io/socket.io.js'></script> --}}
-     {{!--
+        </div>
+        <div class='row'>
+            <div class='col s12'>
+                <ul>
+                    {{#each data.items}}
+                    <li>
+                        <ul class='collapsible' data-collapsible='expandable'>
+                            <li>
+                                <div class='collapsible-header'>{{group}}</div>
+                                <div class='collapsible-body'>
+                                    {{> items_table}}
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    </main>
+    <footer></footer>
+    {{!--
+    <script src='/socket.io/socket.io.js'></script> --}} {{!--
     <script>
         var data = {
             name: "{{data.name}}",
             game: "{{data.game}}"
         }
-    </script> --}}
-    {{!-- <script src='/js/game_master.js'></script> --}}
+    </script> --}} {{!--
+    <script src='/js/game_master.js'></script> --}}
 </body>
 
 </html>
