@@ -1,0 +1,12 @@
+{
+    "test": {
+        "PORT": 3000,
+        "MONGODB_URI": "mongodb://localhost:27017/d-and-d-game-test",
+        "JWT_SECRET": "sdfnEDNP349wuxz3499SDLFKjkoz3490"
+    },
+    "development": {
+        "PORT": 3000,
+        "MONGODB_URI": "mongodb://localhost:27017/d-and-d-game",
+        "JWT_SECRET": "enof340WXICenpIJQNanxz2497nspn34n97"
+    }
+}
