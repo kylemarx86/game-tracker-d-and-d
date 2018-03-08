@@ -6,18 +6,23 @@ const http = require('http');
 const fs = require('fs');
 
 const express = require('express');
+
+
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
 
 // const socketIO = require('socket.io');
 const bodyParser = require('body-parser');
+const _ = require('lodash');
+
 const hbs = require('hbs');
 
 // LOCAL
 var {mongoose} = require('./db/mongoose');
 var {User} = require('./models/user');
 
-const publicPath = path.join(__dirname, '../public');
-const viewsPath = path.join(__dirname, '../views');
+const publicPath = path.join(__dirname, '..', 'public');
+const viewsPath = path.join(__dirname, '..', 'views');
 const port = process.env.PORT || 3000;
 var app = express();
 
@@ -26,12 +31,116 @@ var server = http.createServer(app);
 // MIDDLEWARE
 app.use(express.static(publicPath));
 
-// figure out which i actually need
 app.use( bodyParser.json() );                               // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded( {extended: true} ));         // to support URL-encoded bodies
+
+app.use(cookieParser());
+
 // hbs.registerPartials(__dirname + './../views/partials');
 hbs.registerPartials(path.join(__dirname, './../views/partials'));
 app.set('view engine', 'hbs');
+
+
+/// SESSION STUFF
+// initialize express-session to allow us track the logged-in user across sessions.
+app.use(session({
+    key: 'user_sid',
+    secret: 'somerandonstuffs',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        expires: 600000
+    }
+}));
+
+// This middleware will check if user's cookie is still saved in browser and user is not set, then automatically log the user out.
+// This usually happens when you stop your express server after login, your cookie still remains saved in the browser.
+app.use((req, res, next) => {
+    if (req.cookies.user_sid && !req.session.user) {
+        res.clearCookie('user_sid');        
+    }
+    next();
+});
+
+// middleware function to check for logged-in users
+var sessionChecker = (req, res, next) => {
+    if (req.session.user && req.cookies.user_sid) {
+        res.redirect('/dashboard');
+    } else {
+        next();
+    }
+};
+
+// ****************** ROUTES **********************************
+// SIGNUP ROUTES
+app.route('/signup')
+    .get(sessionChecker, (req, res) => {
+        res.sendFile(path.join(publicPath, 'index.html'));
+    })
+    .post((req, res) => {
+        var body = _.pick(req.body, ['email', 'password']);
+        var user = new User(body);
+
+        user.save().then(user => {
+            req.session.user = user;
+            res.redirect('/dashboard');
+        }).catch((err) => {
+            // try to send error along
+            // send error code
+            res.redirect('/signup');
+            // res.status(400).send(err);
+        });
+    });
+
+// LOGIN ROUTES
+app.route('/login')
+    .get(sessionChecker, (req, res) => {
+        res.sendFile(path.join(publicPath, 'index.html'));
+    })
+    .post((req, res) => {
+        var body = _.pick(req.body, ['email', 'password']);
+    
+        User.findByCredentials(body.email, body.password).then((user) => {
+
+            if(!user){
+                res.redirect('/login');
+            }else{
+                req.session.user = user;
+                res.redirect('/dashboard');
+            }
+        }).catch((e) => {
+            res.redirect('/login');
+        });
+    });
+
+app.get('/', sessionChecker, (req, res) => {
+    res.sendFile(path.join(publicPath, 'index.html'));
+});
+
+// DASHBOARD ROUTE
+app.get('/dashboard', (req, res) => {
+    if (req.session.user && req.cookies.user_sid) {
+        // res.sendFile(path.join(viewsPath, 'main.html'));
+        res.render(path.join(viewsPath, 'game_master.hbs'));
+    } else {
+        res.redirect('/login');
+    }
+});
+
+// LOGOUT ROUTE
+app.get('/logout', (req, res) => {
+    if(req.session.user && req.cookies.user_sid){
+        res.clearCookie('user_sid');
+        res.redirect('/');
+    } else {
+        res.redirect('/');
+    }
+});
+
+
+
+
+
 
 
 // POST
@@ -46,7 +155,12 @@ app.set('view engine', 'hbs');
 //     res.render('sign_up.hbs');
 // });
 
-// SOCKETS
+
+
+
+
+
+// SOCKETS STUFF
 // io.on('connection', (socket) => {
 //     console.log('new user connected');
 
@@ -98,19 +212,6 @@ app.set('view engine', 'hbs');
 //     });
 // });
 
-
-/// SESSION STUFFS
-
-// initialize express-session to allow us track the logged-in user across sessions.
-app.use(session({
-    key: 'user_sid',
-    secret: 'somerandonstuffs',
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        expires: 600000
-    }
-}));
 
 server.listen(port, () => {
     console.log(`Started on port ${port}`);
