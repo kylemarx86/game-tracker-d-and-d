@@ -51,7 +51,7 @@ UserSchema.methods.generateAuthToken = function() {
     user.tokens.push({access, token});
     return user.save().then(() => {
         return token;
-    })
+    });
 };
 
 UserSchema.methods.removeToken = function(token) {
@@ -61,7 +61,7 @@ UserSchema.methods.removeToken = function(token) {
         $pull: {
             tokens: {token}
         }
-    })
+    });
 };
 
 UserSchema.statics.findByToken = function(token) {
@@ -99,13 +99,12 @@ UserSchema.statics.findByCredentials = function(email, password) {
             // if the result is true = call resolve with user
             // if the result is false = reject
         
-            bcrypt.compare(password, user.password, (err, res) => {
+            bcrypt.compare(password, user.password).then((res) => {
                 if(res){
                     resolve(user);
                 }else{
-                    // console.log('time to reject')
                     // reject('User and password combination not found.');
-                    Promise.reject('User and pass combination not found.')
+                    reject('User and pass combination not found.');
                 }
             });
         });

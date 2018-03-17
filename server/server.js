@@ -7,15 +7,16 @@ const fs = require('fs');
 
 const express = require('express');
 
-
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-
-// const socketIO = require('socket.io');
 const bodyParser = require('body-parser');
 const _ = require('lodash');
 
-const hbs = require('hbs');
+// const socketIO = require('socket.io');
+
+// const hbs = require('hbs');
+const hbs = require('express-handlebars');
+
 
 // LOCAL
 var {mongoose} = require('./db/mongoose');
@@ -28,18 +29,22 @@ var app = express();
 
 var server = http.createServer(app); 
 
-// MIDDLEWARE
-app.use(express.static(publicPath));
+// ******************* MIDDLEWARE **********************************
 
+// VIEW ENGINE SETUP
+app.engine('hbs', hbs({
+    extname: 'hbs',
+    layoutsDir: viewsPath,
+    partialsDir: viewsPath + '/partials/'
+}));
+app.set('views', viewsPath);        // not sure if necessary
+app.set('view engine', 'hbs');
 app.use( bodyParser.json() );                               // to support JSON-encoded bodies
-app.use(bodyParser.urlencoded( {extended: true} ));         // to support URL-encoded bodies
-
+app.use( bodyParser.urlencoded( {extended: true} ));         // to support URL-encoded bodies
+// example has exressValidator() middleware here
 app.use(cookieParser());
 
-// hbs.registerPartials(__dirname + './../views/partials');
-hbs.registerPartials(path.join(__dirname, './../views/partials'));
-app.set('view engine', 'hbs');
-
+app.use(express.static(publicPath));
 
 /// SESSION STUFF
 // initialize express-session to allow us track the logged-in user across sessions.
@@ -75,7 +80,7 @@ var sessionChecker = (req, res, next) => {
 // SIGNUP ROUTES
 app.route('/signup')
     .get(sessionChecker, (req, res) => {
-        res.sendFile(path.join(publicPath, 'index.html'));
+        res.render('login', {seccess: req.session.success, errors: req.session.errors });
     })
     .post((req, res) => {
         var body = _.pick(req.body, ['email', 'password']);
@@ -92,10 +97,16 @@ app.route('/signup')
         });
     });
 
+    
+app.get('/', sessionChecker, (req, res) => {
+    res.render('login', {seccess: req.session.success, errors: req.session.errors });
+    req.session.errors = null;
+});
+
 // LOGIN ROUTES
 app.route('/login')
     .get(sessionChecker, (req, res) => {
-        res.sendFile(path.join(publicPath, 'index.html'));
+        res.render('login', {seccess: req.session.success, errors: req.session.errors });
     })
     .post((req, res) => {
         var body = _.pick(req.body, ['email', 'password']);
@@ -103,29 +114,49 @@ app.route('/login')
         User.findByCredentials(body.email, body.password).then((user) => {
 
             if(!user){
-                res.redirect('/login');
+                res.redirect('/');
             }else{
                 req.session.user = user;
                 res.redirect('/dashboard');
             }
         }).catch((e) => {
-            res.redirect('/login');
+            res.redirect('/');
         });
     });
 
-app.get('/', sessionChecker, (req, res) => {
-    res.sendFile(path.join(publicPath, 'index.html'));
-});
 
 // DASHBOARD ROUTE
 app.get('/dashboard', (req, res) => {
     if (req.session.user && req.cookies.user_sid) {
-        // res.sendFile(path.join(viewsPath, 'main.html'));
-        res.render(path.join(viewsPath, 'game_master.hbs'));
+        res.render('game_select');
     } else {
-        res.redirect('/login');
+        res.redirect('/');
     }
 });
+
+// GAME ROUTES
+// app.get('/create_game', (req, res) => {
+//     if(req.session.user && req.cookies.user_sid) {
+//         res.render(path.join(viewsPath, 'game.hbs'));
+//     } else {
+//         res.redirect('/');
+//     }
+// });
+app.route('/create_game')
+    .post((req, res) => {
+        if(req.session.user && req.cookies.user_sid) {
+            res.render('game');
+        } else {
+            res.redirect('/');
+        }
+    });
+app.get('/join_game', (req, res) => {
+    if(req.session.user && req.cookies.user_sid) {
+        res.render('game');
+    } else {
+        res.redirect('/');
+    }
+})
 
 // LOGOUT ROUTE
 app.get('/logout', (req, res) => {
@@ -136,9 +167,6 @@ app.get('/logout', (req, res) => {
         res.redirect('/');
     }
 });
-
-
-
 
 
 

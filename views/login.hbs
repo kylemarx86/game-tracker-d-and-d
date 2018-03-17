@@ -88,6 +88,15 @@
         </div>
 
         <div class='col s12 m6'>
+            {{#if errors}}
+                <section class='errors'>
+                    <ul>
+                        {{#each errors}}
+                            <li>{{this.msg}}</li>
+                        {{/each}}
+                    </ul>
+                </section>
+            {{/if}}
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In quis porttitor quam. Vivamus nec molestie erat. Suspendisse
                 efficitur, nibh ac lacinia placerat, quam dui tempus felis, eget pulvinar diam elit nec mi. Vestibulum auctor
                 diam lectus, a tempus metus sollicitudin vitae. Donec at nibh nec velit malesuada blandit vel eget dui. Aliquam

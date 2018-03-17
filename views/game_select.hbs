@@ -21,7 +21,6 @@
 </head>
 
 <body>
-    {{!-- Welcome to D and D login page --}}
     <header></header>
     <main>
         <nav class='nav-wrapper red darken-4'>
@@ -47,7 +46,7 @@
                     </div>
                 </nav>
                 <div id="existing-game" class="">
-                    <form class='col s12' action='/game' method="POST">
+                    <form class='col s12' action='/enter_game' method="POST">
                         <input class='panel__input' type='hidden' name='role' value='player'>
                         <div class='row'>
                             <div class='form-field input-field col s12'>
@@ -65,16 +64,16 @@
                     </form>
                 </div>
                 <div id="create-game" class="">
-                    <form class='col s12' action='/game' method="POST">
+                    <form class='col s12' action='/create_game' method="POST">
                         <input class='' type='hidden' name='role' value='gameMaster'>
                         <div class='row'>
-                            <div class=' input-field col s12'>
+                            <div class='input-field col s12'>
                                 <label>Game Name</label>
                                 <input class='' type='text' name='game' />
                             </div>
                         </div>
                         <div class='row center-align'>
-                            <div class=' input-field col s12'>
+                            <div class='input-field col s12'>
                                 <button class='btn'>Create</button>
                             </div>
                         </div>
