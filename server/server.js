@@ -80,7 +80,8 @@ var sessionChecker = (req, res, next) => {
 // SIGNUP ROUTES
 app.route('/signup')
     .get(sessionChecker, (req, res) => {
-        res.render('login', {seccess: req.session.success, errors: req.session.errors });
+        // should prob redirect to login
+        res.render('login', {success: req.session.success, errors: req.session.errors });
     })
     .post((req, res) => {
         var body = _.pick(req.body, ['email', 'password']);
@@ -99,14 +100,14 @@ app.route('/signup')
 
     
 app.get('/', sessionChecker, (req, res) => {
-    res.render('login', {seccess: req.session.success, errors: req.session.errors });
-    req.session.errors = null;
+    res.render('login', {errors: req.session.errors} );
+    req.session.errors = [];
 });
 
 // LOGIN ROUTES
 app.route('/login')
     .get(sessionChecker, (req, res) => {
-        res.render('login', {seccess: req.session.success, errors: req.session.errors });
+        res.redirect('/')
     })
     .post((req, res) => {
         var body = _.pick(req.body, ['email', 'password']);
@@ -114,12 +115,23 @@ app.route('/login')
         User.findByCredentials(body.email, body.password).then((user) => {
 
             if(!user){
+                // set session variable with an error
+                // add error to session variable
+                if(!req.session.errors){
+                    req.session.errors = [];
+                }
+                req.session.errors.push(e);
                 res.redirect('/');
             }else{
                 req.session.user = user;
                 res.redirect('/dashboard');
             }
         }).catch((e) => {
+            // add error to session variable
+            if(!req.session.errors){
+                req.session.errors = [];
+            }
+            req.session.errors.push(e);
             res.redirect('/');
         });
     });

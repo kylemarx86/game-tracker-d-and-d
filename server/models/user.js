@@ -89,9 +89,11 @@ UserSchema.statics.findByToken = function(token) {
 UserSchema.statics.findByCredentials = function(email, password) {
     var User = this;
 
+    // tested no user found (password non-existent) and user found but wrong password
+    // implemented same error in both cases to prevent multiple attempts at finding password
     return User.findOne({email}).then((user) => {
         if(!user){
-            return Promise.reject();
+            return Promise.reject('Your login or password is incorrect.');
         }
 
         return new Promise((resolve, reject) => {
@@ -103,8 +105,7 @@ UserSchema.statics.findByCredentials = function(email, password) {
                 if(res){
                     resolve(user);
                 }else{
-                    // reject('User and password combination not found.');
-                    reject('User and pass combination not found.');
+                    reject('Your login or password is incorrect.');
                 }
             });
         });
